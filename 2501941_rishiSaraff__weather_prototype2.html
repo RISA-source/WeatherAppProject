@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+
+    <!-- Importing font from Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <!-- Linking the CSS Stylesheet to HTML -->
+    <link rel="stylesheet" href="2501941_rishiSaraff__style_prototype2.css">
+
+</head>
+
+<body>
+    <main>
+        <!-- For Searchbar. -->
+        <div id="searchbar-container">
+            <label id="search-label" for="city-search">Your City</label>
+            <input id="city" type="text" placeholder="Search.." value="Opelika">
+            <button id="search-button">Search</button>
+        </div>
+
+        <!-- For real-time Date & Day and City Name. -->
+        <div id="citydate-container">
+            <p class="city-date" id="city-name"></p>
+            <p class="city-date" id="day-date"></p>
+        </div>
+
+
+        <!-- For Weather Conditions -->
+        <div id="weather-image-container">
+            <img id="weather-image" alt="weather-image">
+            <p id="degree-celsius"></p>
+        </div>
+
+        <!-- For the temperature in degree celsius -->
+        <div id="main-data">
+            <h2 id="main-weather"></h2>
+            <p id="weather-condition"></p>
+        </div>
+
+
+        <!-- For Pressure, Humidity and Wind Speed -->
+        <div id="extradata-container">
+            <div class="ed-cards" id="pressure">
+                <img class="ed-icons"
+                    src="https://cdn4.iconfinder.com/data/icons/weather-287/32/92-_pressure-_air-_wind-_weather-512.png"
+                    alt="pressure-icon">
+                <div class="ed-data">
+                    <h3 class="ed-head">Pressure</h3>
+                    <p class="ed-content" id="pressure-data"></p>
+                </div>
+            </div>
+            <div class="ed-cards" id="humidity">
+                <img class="ed-icons"
+                    src="https://cdn4.iconfinder.com/data/icons/weather-114/48/rain-humidity-fog-weather-1024.png"
+                    alt="humidity-icon">
+                <div class="ed-data">
+                    <h3 class="ed-head">Humidity</h3>
+                    <p class="ed-content" id="humidity-data"></p>
+                </div>
+            </div>
+            <div class="ed-cards" id="wind-speed">
+                <img id="wind-speed-icon" class="ed-icons"
+                    src="https://i.postimg.cc/jSTWbqgD/imgbin-wind-speed-computer-icons-weather-forecasting-humidity-wind-RFz5exr-Tc-SLt-DPydn5i-Xxg4r-Q-removeb.png"
+                    alt="wind-speed-icon">
+                <div id='wind-speed-div' class="ed-data">
+                    <h3 class="ed-head">Wind Speed</h3>
+                    <p class="ed-content" id="wind-speed-data"></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- CopyRights Section -->
+        <div id="foot-note">
+            <p id="foot-copy">Copyright &copy; 2024 Rishi Saraff. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript file link. -->
+    <script src="2501941_rishiSaraff__script_prototype2.js"></script>
+</body>
+
+</html>
