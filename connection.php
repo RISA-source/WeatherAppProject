@@ -1,10 +1,13 @@
 <?php
 
 # Connection Establishing
-$host = 'localhost';
+$host = 'roundhouse.proxy.rlwy.net';
 $username = 'root';
-$password = '';
-$conn = mysqli_connect($host,$username,$password);
+$password = 'YjbFHGRKyLQfsfjOrMIxesEILWMHjTfP';
+$db = 'railway';
+$port = '49776';
+
+$conn = mysqli_connect($host,$username,$password,$db,$port);
 if ($conn){
 }else{
     echo 'Connection Unsuccessful '.mysqli_connect_error();
@@ -13,7 +16,7 @@ if ($conn){
 # Connection Established
 
 #Creating the database
-$sql_db = "CREATE DATABASE IF NOT EXISTS WeatherForecast;";
+$sql_db = "CREATE DATABASE IF NOT EXISTS railway;";
 $result = mysqli_query($conn,$sql_db);
 if ($result){
 }else{
@@ -21,7 +24,7 @@ if ($result){
 }
 
 # Selecting the created database
-mysqli_select_db($conn, 'WeatherForecast');
+mysqli_select_db($conn, 'railway');
  
 # Creating the table
 $city_table = 'CREATE TABLE IF NOT EXISTS Cities(
