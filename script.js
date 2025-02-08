@@ -1,15 +1,3 @@
-// API Key
-const api_key = '5f4671bf9bcb211342029ffcd3ef261c';
-
-// Default City
-const defaultCity = 'Opelika';
-let firstRun = true;
-// Running the code initially. We see the data of defaultCity.
-if(firstRun){
-    fetchWeatherData(defaultCity);
-    firstRun = false;
-}
-
 // Getting the Elements
 const elements = {
     searchButton : document.getElementById('search-button'),
@@ -23,6 +11,15 @@ const elements = {
     humidityElement : document.getElementById('humidity-data'),
     windspeedElement : document.getElementById('wind-speed-data'),
     degreeElement : document.getElementById('degree-celsius')
+}
+
+// Default City
+const defaultCity = 'Opelika';
+let firstRun = true;
+// Running the code initially. We see the data of defaultCity.
+if(firstRun){
+    fetchWeatherData(defaultCity);
+    firstRun = false;
 }
 
 // Date Day Function
@@ -61,20 +58,55 @@ elements.searchButton.addEventListener('click',function(){
 
 async function fetchWeatherData(city) {
     // URL for API
-    const geo_url = `https://weatherappproject-production.up.railway.app/connection.php?t=${city}`;
+    const geo_url = `http://localhost/php-scripts/Prototype2/2501941_rishiSaraff__weather_prototype2.php?t=${city}`;
+    let data = null;
+    // Check if the data is available in localStorage
+    const storedData = localStorage.getItem(city.toLowerCase());
+    
+    // If localStorage has data for this city
+    if (storedData) {
+        console.log('Stored data found....')
+        data = JSON.parse(storedData);
+        const lastUpdated = new Date(data[0].Get_Time); // Get the time the data was last updated
+        const currentTime = new Date(); // Current time
 
-    // Fetching data from API
-    const response = await fetch(geo_url);
+        // Check if the data is older than 2 hours (7200000 milliseconds)
+        const timeDiff = currentTime - lastUpdated;
+        console.log(`Found data was last updated at ${lastUpdated}.`)
+        console.log('So....')
 
-    if (!response.ok){
-        alert('ERROR: Please Give Correct City Name or Check Your Internet connection.')
-        throw new Error(`${response.statusText}`);
+        if (timeDiff < 7200000) {  // 2 hours = 7200000 milliseconds
+            console.log("Using cached data (within 2 hours)");
+            displayWeatherData(data);
+            return; // Exit function if data is still valid
+        } else {
+            console.log("Data is older than 2 hours, fetching new data...");
+        }
     }
 
-    const data = await response.json();
-    console.log('Data Fetched and Converted.');
-    console.log(data)
+    // If no data in localStorage or data is too old, fetch new data
+    if (navigator.onLine) {
+        const response = await fetch(geo_url);
 
+        if (!response.ok) {
+            alert('ERROR: Please give the correct city name or check your internet connection.');
+            throw new Error(`${response.statusText}`);
+        }
+
+        data = await response.json();
+        console.log('Fetched and converted data from API.');
+
+        // Save new data to localStorage
+        localStorage.setItem(city.toLowerCase(), JSON.stringify(data));
+        console.log('Stored new data to local storage!')
+        displayWeatherData(data); // Display the new data
+
+    } else {
+        alert("ERROR: No internet connection, and no cached data available.");
+    }
+}
+
+function displayWeatherData(data){
     // // Storing necessary data
     const country = data[0].Country;
     const place = data[0].City;
