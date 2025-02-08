@@ -58,7 +58,7 @@ elements.searchButton.addEventListener('click',function(){
 
 async function fetchWeatherData(city) {
     // URL for API
-    const geo_url = `http://localhost/php-scripts/Prototype2/2501941_rishiSaraff__weather_prototype2.php?t=${city}`;
+    const geo_url = `https://weatherappproject-production.up.railway.app/connection.php?t=${city}`;
     let data = null;
     // Check if the data is available in localStorage
     const storedData = localStorage.getItem(city.toLowerCase());
