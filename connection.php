@@ -1,6 +1,4 @@
 <?php
-date_default_timezone_set('Asia/Kathmandu');
-
 # Connection Establishing
 $host = 'roundhouse.proxy.rlwy.net';
 $username = 'root';
@@ -137,9 +135,8 @@ if (mysqli_num_rows($result2)==0){
         $finaldata = fetchdata($conn, $city);
     }
 }
-
-$tobesent = json_encode($finaldata);
 header('content-type: application/json');
+$tobesent = json_encode($finaldata);
 echo $tobesent
 
 ?>
