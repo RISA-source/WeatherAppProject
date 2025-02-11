@@ -69,6 +69,7 @@ async function fetchWeatherData(city) {
         data = JSON.parse(storedData);
         console.log('So.... Using cached data!')
         displayWeatherData(data);
+        return;
     }
 
     // If no data in localStorage or data is too old, fetch new data
