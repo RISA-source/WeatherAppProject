@@ -68,20 +68,10 @@ async function fetchWeatherData(city) {
         console.log('Stored data found....')
         data = JSON.parse(storedData);
         const lastUpdated = new Date(data[0].Get_Time); // Get the time the data was last updated
-        const currentTime = new Date(); // Current time
 
-        // Check if the data is older than 2 hours (7200000 milliseconds)
         const timeDiff = currentTime - lastUpdated;
         console.log(`Found data was last updated at ${lastUpdated}.`)
-        console.log('So....')
-
-        if (timeDiff < 7200000) {  // 2 hours = 7200000 milliseconds
-            console.log("Using cached data (within 2 hours)");
-            displayWeatherData(data);
-            return; // Exit function if data is still valid
-        } else {
-            console.log("Data is older than 2 hours, fetching new data...");
-        }
+        console.log('So.... Using cached data!')
     }
 
     // If no data in localStorage or data is too old, fetch new data
