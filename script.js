@@ -68,8 +68,6 @@ async function fetchWeatherData(city) {
         console.log('Stored data found....')
         data = JSON.parse(storedData);
         const lastUpdated = new Date(data[0].Get_Time); // Get the time the data was last updated
-
-        const timeDiff = currentTime - lastUpdated;
         console.log(`Found data was last updated at ${lastUpdated}.`)
         console.log('So.... Using cached data!')
     }
